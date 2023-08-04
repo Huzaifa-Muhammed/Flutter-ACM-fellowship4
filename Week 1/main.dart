@@ -1,5 +1,8 @@
-void main() {
-  String text = 'Hello World';
+import 'dart:io';
 
-  print(text);
+void main() {
+  String text = "Enter Your Name :";
+  stdout.writeln(text);
+  String input = stdin.readLineSync();
+  stdout.writeln(input);
 }
