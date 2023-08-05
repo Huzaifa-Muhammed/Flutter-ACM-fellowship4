@@ -104,16 +104,28 @@ class Tasks{
         }
     }
     
-         // Task 8
+         // Task 8 for each loop
          
-    
+    num Task8(List mylist){
+        num sum=0;
+        mylist.forEach((mylist) => sum+= mylist);
+        return sum;
+    }
     
     
 }
 
 
 
-void main(){
-  Tasks T=new Tasks();
-  T.Task6();
-}
+void main()
+{
+    Tasks T=new Tasks();
+    List<int> mainList=[1 ,2 ,3 ,4];
+    print(T.Task8(mainList));
+ }
+ 
+ 
+ 
+ 
+ 
+ 
