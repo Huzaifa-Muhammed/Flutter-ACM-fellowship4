@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MyButton(value:'0', buttonPressing:calculation,font_Size: 20,buttonColor: Colors.blue,buttonRadius: 0,borderColor: const Color(0xff5454c5)),
-                  MyButton(value:'00', buttonPressing:calculation,font_Size: 14.2,buttonColor: Colors.blue,buttonRadius: 0,borderColor: const Color(0xff5454c5)),
+                  MyButton(value:'00', buttonPressing:calculation,font_Size: 13,buttonColor: Colors.blue,buttonRadius: 0,borderColor: const Color(0xff5454c5)),
                   MyButton(value:'000', buttonPressing:calculation,font_Size: 9,buttonColor: Colors.blue,buttonRadius: 0,borderColor: const Color(0xff5454c5)),
                   MyButton(value:'=', buttonPressing:calculation,font_Size: 20,buttonColor: Colors.orangeAccent,buttonRadius: 25,borderColor: const Color(0xff5454c5)),
                 ],
