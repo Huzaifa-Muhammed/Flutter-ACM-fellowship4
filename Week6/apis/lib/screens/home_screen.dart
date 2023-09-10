@@ -1,8 +1,9 @@
-import 'dart:convert';
 import 'package:apis/model/user.dart';
+import 'package:apis/services/user_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
+
+import '../model/user_name.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +15,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   List <User> users = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,16 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: users.length,
           itemBuilder:(context,index) {
             final user=users[index];
-            final email=user.email;
-            final gender=user.gender;
-            final title=user.name.title;
-            final first=user.name.first;
-            final last=user.name.last;
             final Color textColor;
-            gender=='male'?textColor=Colors.blue:textColor=Colors.pinkAccent;
+            user.gender=='male'?textColor=Colors.blue:textColor=Colors.pinkAccent;
             return ListTile(
-              title: Text('$title $first $last',style:GoogleFonts.abyssinicaSil(color: textColor),),
-              subtitle: Text(email),
+              title: Text(user.fullName,style:GoogleFonts.abyssinicaSil(color: textColor),),
+              subtitle: Text(user.email),
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Wv5zZwrZllu2IWZhXRIW9IzZMKXa6fgTSw&usqp=CAU'),
@@ -42,27 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
       ),
-      floatingActionButton:FloatingActionButton(
-        onPressed: (){
-          fetchUsers();
-        },
-        child: Text("Get Data",style: GoogleFonts.bahianita(fontSize: 20),),
-      ),
     );
   }
-
-  Future<void> fetchUsers() async {
-    const String url='https://randomuser.me/api/?results=10';
-    final response=await http.get(Uri.parse(url));
-    final body=response.body;
-    final json=jsonDecode(body);
-    final results=json['results'] as List<dynamic>;
-    final transform=results.map((e) {
-      final name=UserName(title: e['name']['title'], first: e['name']['first'], last: e['name']['last']);
-      return User(gender:e['gender'], email:e['email'], cell:e['cell'], phone:e['phone'], nat:e['nat'], name:name);
-    }).toList();
+  Future<void> fetchUsers()async {
+    final response=await UserApi.fetchUsers();
     setState(() {
-      users=transform;
+      users=response;
     });
   }
 }
