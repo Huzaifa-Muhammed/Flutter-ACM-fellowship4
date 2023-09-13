@@ -1,3 +1,4 @@
+import 'package:apis/model/user_location.dart';
 import 'package:apis/model/user_name.dart';
 
 class User {
@@ -7,6 +8,7 @@ class User {
   final String cell;
   final String nat;
   final UserName name;
+  final UserLocation location;
   User({
     required this.gender,
     required this.email,
@@ -14,6 +16,7 @@ class User {
     required this.phone,
     required this.nat,
     required this.name,
+    required this.location,
   });
   String get fullName{
     return '${name.title} ${name.first} ${name.last}';

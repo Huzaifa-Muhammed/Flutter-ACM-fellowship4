@@ -3,8 +3,6 @@ import 'package:apis/services/user_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../model/user_name.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -36,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             user.gender=='male'?textColor=Colors.blue:textColor=Colors.pinkAccent;
             return ListTile(
               title: Text(user.fullName,style:GoogleFonts.abyssinicaSil(color: textColor),),
-              subtitle: Text(user.email),
+              subtitle: Text(user.location.country),
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Wv5zZwrZllu2IWZhXRIW9IzZMKXa6fgTSw&usqp=CAU'),
